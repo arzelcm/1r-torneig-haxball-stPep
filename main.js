@@ -1,9 +1,11 @@
+const roomName = "Nom de la partida";
+
 var room = HBInit({
-	roomName: "My room",
+	roomName: roomName,
 	maxPlayers: 16,
 	noPlayer: true // Remove host player (recommended!)
 });
-room.setDefaultStadium("Medium");
+room.setDefaultStadium("Classic");
 room.setScoreLimit(5);
 room.setTimeLimit(0);
 
@@ -18,9 +20,13 @@ function updateAdmins() {
 
 room.onPlayerJoin = function(player) {
   updateAdmins();
-  room.send
+  room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!');
 }
 
 room.onPlayerLeave = function(player) {
   updateAdmins();
+}
+
+room.onTeamGoal = team => {
+  room.sendAnnouncement('GOOOOOOOOOOL GOOOOL GOOOL GOL GOOOOL. Marca l\'equip ' + team. + '');
 }
