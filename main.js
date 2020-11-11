@@ -93,3 +93,16 @@ function getScorers(team) {
   });
   return output;
 }
+
+room.onPlayerChat = function(player, message) {
+	if(message.match(/#!/g) != null){
+		room.setPlayerAvatar(player.id, "🤬");
+		//setTimeout(() => { room.setPlayerAvatar(player.id, player.id); }, 1000);
+		return false;
+	}
+	if (message.match(/lililii/g) != null) {
+		room.setPlayerAvatar(player.id, "🤩");
+		//setTimeout(() => { room.setPlayerAvatar(player.id, player.id); }, 1000);
+		return false;
+	}
+}
