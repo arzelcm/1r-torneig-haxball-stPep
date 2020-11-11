@@ -1,1 +1,1 @@
-# 1r-torneig-haxball-stPep
+# Aquí hi trobareu l'script per crear les sales dels partits oficials del 1r-torneig-haxball-stPep
