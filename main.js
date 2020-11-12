@@ -1,5 +1,5 @@
 const roomName = "Nom de la partida";
-var lastPlayerOnKickingBall = "error";
+var lastPlayerOnKickingBall = "";
 var goals = [];
 const RED_TEAM = 1;
 const BLUE_TEAM = 2;
