@@ -1,3 +1,4 @@
+
 # Scripts dels partits oficials del 1r Torneig de Haxball de Sant Josep
 
 Aquí podràs trobar tot el codi que fan funcionar el torneig de Haxball de Sant Josep. Estan estructurats de la següent manera:
@@ -16,5 +17,4 @@ Aquí podràs trobar tot el codi que fan funcionar el torneig de Haxball de Sant
 5. Fes el captcha
 6. Comparteix el link amb els teus amics i amigues, a jugar!
 
-![Image of Esplai Sant Josep]
-(https://pbs.twimg.com/profile_images/1044144595389624321/G0XfX45p_400x400.jpg)
+![Imatge de l'esplai Sant Josep](https://pbs.twimg.com/profile_images/1044144595389624321/G0XfX45p_400x400.jpg)
