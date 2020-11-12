@@ -10,7 +10,7 @@ Aquí podràs trobar tot el codi que fan funcionar el torneig de Haxball de Sant
 ## Com pots utilitzar aquest script?
 
 És ben senzill:
-1. Copia el codi del mapa que vulguis (són al directori `stadiums`).
+1. Copia el codi del mapa que vulguis (són al directori `stadiums`). Has de copia el fitxer `.js`.
 2. Entra a https://html5.haxball.com/headless, obra les eines de desenvolupador (clicant `F12`) i situa't a la consola.
 3. Una vegada a allà enganxa el codi del mapa i clicka `enter`.
 4. Copia el `main.js` i enganxa'l a la consola, tornant a clickar `enter`.
