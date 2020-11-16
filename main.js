@@ -14,7 +14,7 @@ var room = HBInit({
 	noPlayer: true
 });
 
-//room.setCustomStadium(stadium);
+room.setCustomStadium(stadium);
 room.setScoreLimit(5);
 room.setTimeLimit(0);
 
@@ -99,16 +99,36 @@ function getScorers(team) {
 }
 
 room.onPlayerChat = function(player, message) {
-	if(message.match(/#!/g) != null){
-		room.setPlayerAvatar(player.id, "🤬");
+	if(message.match(/#/g) != null){
+    easterEgg = message.split("#");
+    switch(easterEgg[1]){
+      case "!":
+		    room.setPlayerAvatar(player.id, "🤬");
+        break;
+      case "lililii":
+        room.setPlayerAvatar(player.id, "🤩");
+        break;
+      case "i de tooot":
+        room.setPlayerAvatar(player.id, "🦦");
+        break;
+      case "cocotero":
+        room.setPlayerAvatar(player.id, "🥥");
+        break;
+      case "malvades":
+        room.setPlayerAvatar(player.id, "💜");
+        break;
+      case "indius":
+        room.setPlayerAvatar(player.id, "💙");
+        break;
+      case "rubinaires":
+        room.setPlayerAvatar(player.id, "❤️");
+        break;
+      case "taronja":
+        room.setPlayerAvatar(player.id, "🧡");
+        break;              
+      default:
+        return;
+    }
 		return false;
 	}
-	if (message.match(/lililii/g) != null) {
-		room.setPlayerAvatar(player.id, "🤩");
-		return false;
-  }
-  if (message.match(/i de tot/g) != null) {
-		room.setPlayerAvatar(player.id, "🤩");
-    return false;
-  }
 }
