@@ -1,8 +1,12 @@
-const roomName = "Nom de la partida";
+const roomName = "Vermell  vs. Blau";
 var lastPlayerOnKickingBall = "";
 var goals = [];
 const RED_TEAM = 1;
 const BLUE_TEAM = 2;
+var teams = {
+  [RED_TEAM]: "Vermell",
+  [BLUE_TEAM]: "Blau"
+}
 
 var room = HBInit({
 	roomName: roomName,
@@ -23,17 +27,30 @@ function updateAdmins() {
 }
 
 room.onPlayerJoin = function(player) {
-  room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!');
+  updateAdmins();
+  room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!', null, 0x00FF00, "bold", 0);
+}
+
+room.onGameStart = function(byPlayer) {
+  //Inicialitzem variables
+  goals = [];
+  lastPlayerOnKickingBall = "";
+  room.sendAnnouncement("COMENÇA EL PARTIT " + roomName +"!", null, 0x00FF00, "bold", 0);
+}
+
+room.onTeamVictory = function(scores) {
+  let winner = (scores.red > scores.blue)? teams[RED_TEAM] : teams[BLUE_TEAM];
+  room.sendAnnouncement("🏆VICTÒRIA DE L'EQUIP " +  winner + "!!!", null, 0x00FF00, "bold", 0);
 }
 
 room.onTeamGoal = team => {
   var own;
   if (lastPlayerOnKickingBall.team == team) {
     own = false;
-    room.sendAnnouncement('GOOOOOOOOOOL GOOOOL GOOOL GOL GOOOOL de ' + lastPlayerOnKickingBall.name + ' per l\'equip ' + getTeam(team) + '!!!');
+    room.sendAnnouncement('⚽️GOOOOOOOOOOL GOOOOL GOOOL GOL GOOOOL de ' + lastPlayerOnKickingBall.name + ' per l\'equip ' + teams[team] + '!!!', null, 0x00FF00, "bold", 0);
   } else {
     own = true;
-    room.sendAnnouncement('GOOOOOOOOOOOOOOOOOOOOOOL de ' + lastPlayerOnKickingBall.name + ' en pròpia porteria i fa que pugi el marcador per l\'equip ' + getTeam(team) + '!!!');
+    room.sendAnnouncement('⚽️GOOOOOOOOOOOOOOOOOOOOOOL de ' + lastPlayerOnKickingBall.name + ' en pròpia porteria i fa que pugi el marcador per l\'equip ' + teams[team] + '!!!', null, 0x00FF00, "bold", 0);
   }
 
   goals.push({
@@ -47,24 +64,11 @@ room.onTeamGoal = team => {
   }, 1000);
 }
 
-function getTeam(team) {
-  var equip;
-  switch (team) {
-    case BLUE_TEAM:
-      equip = 'Blau';
-      break;
-    default:
-      equip = 'Vermell';
-      break;
-  }
-  return equip;
-}
-
 room.onPlayerBallKick = player => {
   lastPlayerOnKickingBall = player;
   var random = Math.floor(Math.random() * 30) + 1;
   if (random == 17) {
-    room.sendAnnouncement(player.name + ' ho prova però no se\'n surt.');
+    room.sendAnnouncement(player.name + ' ho prova però no se\'n surt.', null, 0x00FF00, "bold", 0);
   };
 }
 
@@ -74,7 +78,7 @@ function updateMarker() {
   var redGoals = scores.red;
   var redScorers = getScorers(RED_TEAM);
   var blueScorers = getScorers(BLUE_TEAM);
-  room.sendAnnouncement(`Vermells: ${redGoals} (${redScorers})\nBlaus: ${blueGoals} (${blueScorers})`);
+  room.sendAnnouncement(`${teams[RED_TEAM]}: ${redGoals} ${((redGoals > 0)? "("+redScorers+")" : "")}\n${teams[BLUE_TEAM]}: ${blueGoals} ${((blueGoals > 0)? "("+blueScorers+")" : "")}`, null, 0x00FF00, "bold", 0);
 }
 
 function getScorers(team) {
@@ -95,14 +99,36 @@ function getScorers(team) {
 }
 
 room.onPlayerChat = function(player, message) {
-	if(message.match(/#!/g) != null){
-		room.setPlayerAvatar(player.id, "🤬");
-		//setTimeout(() => { room.setPlayerAvatar(player.id, player.id); }, 1000);
-		return false;
-	}
-	if (message.match(/lililii/g) != null) {
-		room.setPlayerAvatar(player.id, "🤩");
-		//setTimeout(() => { room.setPlayerAvatar(player.id, player.id); }, 1000);
+	if(message.match(/#/g) != null){
+    easterEgg = message.split("#");
+    switch(easterEgg[1]){
+      case "!":
+		    room.setPlayerAvatar(player.id, "🤬");
+        break;
+      case "lililii":
+        room.setPlayerAvatar(player.id, "🤩");
+        break;
+      case "i de tooot":
+        room.setPlayerAvatar(player.id, "🦦");
+        break;
+      case "cocotero":
+        room.setPlayerAvatar(player.id, "🥥");
+        break;
+      case "malvades":
+        room.setPlayerAvatar(player.id, "💜");
+        break;
+      case "indius":
+        room.setPlayerAvatar(player.id, "💙");
+        break;
+      case "rubinaires":
+        room.setPlayerAvatar(player.id, "❤️");
+        break;
+      case "taronja":
+        room.setPlayerAvatar(player.id, "🧡");
+        break;              
+      default:
+        return;
+    }
 		return false;
 	}
 }
