@@ -19,7 +19,7 @@ room.setScoreLimit(5);
 room.setTimeLimit(0);
 
 room.onPlayerJoin = function(player) {
-  room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!', null, 0x00FF00, "bold", 0);
+  room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!', player.id, 0x00FF00, "bold", 0);
 }
 
 room.onGameStart = function(byPlayer) {
