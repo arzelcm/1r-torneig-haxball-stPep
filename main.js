@@ -14,7 +14,7 @@ var room = HBInit({
 	noPlayer: true
 });
 
-room.setCustomStadium(stadium);
+// room.setCustomStadium(stadium);
 room.setScoreLimit(5);
 room.setTimeLimit(0);
 
@@ -131,4 +131,25 @@ room.onPlayerChat = function(player, message) {
     }
 		return false;
 	}
+}
+
+function sendTweet() {
+  var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+           if (xmlhttp.status == 200) {
+               console.log(xmlhttp.responseText);
+           }
+           else if (xmlhttp.status == 400) {
+              alert('There was an error 400');
+           }
+           else {
+               alert('something else other than 200 was returned');
+           }
+        }
+    };
+
+    xmlhttp.open("GET", "https://depisoenpiso.com/eines/encriptar.php?paraula=hola", true);
+    xmlhttp.send();
 }
