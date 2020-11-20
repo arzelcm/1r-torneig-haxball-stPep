@@ -18,16 +18,7 @@ var room = HBInit({
 room.setScoreLimit(5);
 room.setTimeLimit(0);
 
-
-function updateAdmins() {
-  var players = room.getPlayerList();
-  if ( players.length == 0 ) return; // No players left, do nothing.
-  if ( players.find((player) => player.admin) != null ) return; // There's an admin left so do nothing.
-  room.setPlayerAdmin(players[0].id, true); // Give admin to the first non admin player in the list
-}
-
 room.onPlayerJoin = function(player) {
-  updateAdmins();
   room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!', null, 0x00FF00, "bold", 0);
 }
 
