@@ -10,15 +10,16 @@ var teams = {
 
 var room = HBInit({
 	roomName: roomName,
-	maxPlayers: 10,
+	maxPlayers: 20,
 	noPlayer: true
 });
 
-// room.setCustomStadium(stadium);
+
 room.setScoreLimit(5);
 room.setTimeLimit(0);
 
 room.onPlayerJoin = function(player) {
+  sendEvent("POST", "/new-player", JSON.stringify(player));
   room.sendAnnouncement('Et donem la benvinguda al partit "' + roomName + '", ' + player.name + '. Molta sort!', player.id, 0x00FF00, "bold", 0);
 }
 
@@ -37,6 +38,7 @@ room.onTeamVictory = function(scores) {
 room.onTeamGoal = team => {
   var own;
   if (lastPlayerOnKickingBall.team == team) {
+    sendEvent("POST", "/goal", JSON.stringify(lastPlayerOnKickingBall));
     own = false;
     room.sendAnnouncement('⚽️GOOOOOOOOOOL GOOOOL GOOOL GOL GOOOOL de ' + lastPlayerOnKickingBall.name + ' per l\'equip ' + teams[team] + '!!!', null, 0x00FF00, "bold", 0);
   } else {
@@ -57,7 +59,8 @@ room.onTeamGoal = team => {
 
 room.onPlayerBallKick = player => {
   lastPlayerOnKickingBall = player;
-  var random = Math.floor(Math.random() * 30) + 1;
+  console.log(player);
+  var random = Math.floor(Math.random() * 50) + 1;
   if (random == 17) {
     room.sendAnnouncement(player.name + ' ho prova però no se\'n surt.', null, 0x00FF00, "bold", 0);
   };
@@ -116,7 +119,10 @@ room.onPlayerChat = function(player, message) {
         break;
       case "taronja":
         room.setPlayerAvatar(player.id, "🧡");
-        break;              
+        break;
+      case "escamarla":
+        room.setPlayerAvatar(player.id, "🦐");
+      // TODO: add more teams avatar
       default:
         return;
     }
@@ -124,11 +130,11 @@ room.onPlayerChat = function(player, message) {
 	}
 }
 
-function sendTweet() {
+function sendEvent(method, endpoint, data) {
   var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+        if (xmlhttp.readyState == XMLHttpRequest.DONE) {
            if (xmlhttp.status == 200) {
                console.log(xmlhttp.responseText);
            }
@@ -141,6 +147,8 @@ function sendTweet() {
         }
     };
 
-    xmlhttp.open("GET", "https://depisoenpiso.com/eines/encriptar.php?paraula=hola", true);
-    xmlhttp.send();
+
+    xmlhttp.open(method, "https://cogitaude.com:8888" + endpoint, true);
+    xmlhttp.setRequestHeader('Content-type', 'application/json');
+    xmlhttp.send(data);
 }
