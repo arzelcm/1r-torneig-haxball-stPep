@@ -18,6 +18,6 @@ Aquí podràs trobar tot el codi que fan funcionar el torneig de Haxball de Sant
 6. Comparteix el link amb els teus amics i amigues, a jugar!
 
 
-<sup>[<a name="Nota">1</a>]</sup>: Per canviar els noms i colors dels equips, edita el valor de "roomName" a la línia 6  del `main.js` i canvia el nom per cada equip a les línies 12 i 13 amb el seu color corresponent a les línies 14 i 15.
+<sup>[<a name="Nota">1</a>]</sup> Per canviar els noms i colors dels equips, edita el valor de "roomName" a la línia 6  del `main.js` i canvia el nom per cada equip a les línies 12 i 13 amb el seu color corresponent a les línies 14 i 15.
 
 ![Imatge de l'esplai Sant Josep](https://pbs.twimg.com/profile_images/1044144595389624321/G0XfX45p_400x400.jpg)
