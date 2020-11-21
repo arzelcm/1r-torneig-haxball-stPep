@@ -1,3 +1,8 @@
+const MALVA = [0xE357FF];
+const TARONJA = [0xFF662E];
+const INDI = [0x2A2EAD];
+const RUBI = [0xC71835];
+
 const roomName = "Vermell  vs. Blau";
 var lastPlayerOnKickingBall = "";
 var goals = [];
@@ -17,7 +22,8 @@ var room = HBInit({
 room.setCustomStadium(stadium);
 room.setScoreLimit(5);
 room.setTimeLimit(0);
-
+//room.setTeamColors(RED_TEAM, 60, 0xFFFFFF, MALVA);
+//room.setTeamColors(BLUE_TEAM, 60, 0xFFFFFF, RUBI);
 
 function updateAdmins() {
   var players = room.getPlayerList();
