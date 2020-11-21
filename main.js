@@ -10,7 +10,9 @@ const RED_TEAM = 1;
 const BLUE_TEAM = 2;
 var teams = {
   [RED_TEAM]: "Vermell",
-  [BLUE_TEAM]: "Blau"
+  [BLUE_TEAM]: "Blau",
+  RED_COLOR: MALVA,
+  BLUE_COLOR: TARONJA
 }
 
 var room = HBInit({
@@ -22,8 +24,8 @@ var room = HBInit({
 room.setCustomStadium(stadium);
 room.setScoreLimit(5);
 room.setTimeLimit(0);
-//room.setTeamColors(RED_TEAM, 60, 0xFFFFFF, MALVA);
-//room.setTeamColors(BLUE_TEAM, 60, 0xFFFFFF, RUBI);
+room.setTeamColors(RED_TEAM, 60, 0xFFFFFF, teams.RED_COLOR);
+room.setTeamColors(BLUE_TEAM, 60, 0xFFFFFF, teams.BLUE_COLOR);
 
 function updateAdmins() {
   var players = room.getPlayerList();
